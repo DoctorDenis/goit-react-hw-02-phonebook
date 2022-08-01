@@ -25,7 +25,7 @@ const StyledUl = styled.ul`
     padding: 0.5rem;
     border-bottom: 1px solid purple;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     &:nth-child(2n) {
       background-color: #ffffff4f;

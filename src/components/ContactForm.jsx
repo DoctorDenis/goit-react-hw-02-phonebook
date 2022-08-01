@@ -14,6 +14,7 @@ export class ContactForm extends React.Component {
 
   onSubmitHandler = event => {
     this.props.onSubmit(event);
+    event.target.reset();
     this.setState({
       name: '',
       number: '',
