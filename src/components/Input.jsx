@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export default function Input({
   className,
@@ -33,3 +34,15 @@ export const StyledInput = styled(Input)`
   border-radius: 5px;
   box-shadow: inset 0px 0px 5px #7f8897;
 `;
+
+Input.propTypes = {
+  className: PropTypes.any,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  pattern: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  required: PropTypes.any,
+};

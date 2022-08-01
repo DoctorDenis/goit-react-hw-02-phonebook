@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export function Filter({ onChange, value }) {
   return (
@@ -24,3 +25,8 @@ const StyledInput = styled.input`
     outline: 1px solid skyblue;
   }
 `;
+
+Filter.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+};

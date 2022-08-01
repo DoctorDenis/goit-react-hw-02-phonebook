@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export function ContactList({ contacts, onClick }) {
   return (
@@ -8,9 +9,11 @@ export function ContactList({ contacts, onClick }) {
         <li key={id}>
           <span>{name}: </span>
           <span>{number}</span>
-          <button id={id} type="button" onClick={onClick}>
-            Delete
-          </button>
+          {onClick && (
+            <button id={id} type="button" onClick={onClick}>
+              Delete
+            </button>
+          )}
         </li>
       ))}
     </StyledUl>
@@ -43,3 +46,8 @@ const StyledUl = styled.ul`
     }
   }
 `;
+
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onClick: PropTypes.func,
+};

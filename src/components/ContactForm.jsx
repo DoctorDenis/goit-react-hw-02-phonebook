@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StyledInput } from './Input';
+import PropTypes from 'prop-types';
 
 export class ContactForm extends React.Component {
   state = {
@@ -78,3 +79,8 @@ const StyledButton = styled.button`
   background-color: #759091;
   color: white;
 `;
+
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  contactsRef: PropTypes.array.isRequired,
+};
