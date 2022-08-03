@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledInput } from './Input';
 import PropTypes from 'prop-types';
+import styles from '../index.module.css';
 
 export class ContactForm extends React.Component {
   state = {
@@ -14,7 +14,14 @@ export class ContactForm extends React.Component {
   };
 
   onSubmitHandler = event => {
-    this.props.onSubmit(event);
+    event.preventDefault();
+    let { name, number } = event.target.elements;
+    const contact = {
+      id: new Date().getTime(),
+      [name.name]: name.value,
+      [number.name]: number.value,
+    };
+    this.props.onSubmit(contact);
     event.target.reset();
     this.setState({
       name: '',
@@ -26,7 +33,8 @@ export class ContactForm extends React.Component {
     return (
       <StyledForm onSubmit={this.onSubmitHandler}>
         <label htmlFor="name">Name</label>
-        <StyledInput
+        <input
+          className={styles.form_input}
           type="text"
           name="name"
           value={this.state.name}
@@ -37,7 +45,8 @@ export class ContactForm extends React.Component {
           required
         />
         <label htmlFor="number">Number</label>
-        <StyledInput
+        <input
+          className={styles.form_input}
           id="number"
           type="tel"
           name="number"

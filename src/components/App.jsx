@@ -7,22 +7,13 @@ class App extends React.Component {
     filter: '',
   };
 
-  onSubmitHandler = event => {
-    event.preventDefault();
-    let { name, number } = event.target.elements;
-    if (this.state.contacts.find(el => el.name === name.value)) {
-      alert(`Sorry! ${name.value} is already in contacts`);
+  onSubmitHandler = contact => {
+    if (this.state.contacts.find(el => el.name === contact.name)) {
+      alert(`Sorry! ${contact.name} is already in contacts`);
       return;
     }
     this.setState({
-      contacts: [
-        ...this.state.contacts,
-        {
-          id: new Date().getTime(),
-          [name.name]: name.value,
-          [number.name]: number.value,
-        },
-      ],
+      contacts: [...this.state.contacts, contact],
     });
   };
 
@@ -32,8 +23,8 @@ class App extends React.Component {
     });
   };
 
-  filteredContacts = contacts => {
-    return contacts.filter(contact =>
+  filteredContacts = () => {
+    return this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
     );
   };
@@ -49,6 +40,7 @@ class App extends React.Component {
   };
 
   render() {
+    const filteredContacts = this.filteredContacts();
     return (
       <div>
         <h1>Phonebook</h1>
@@ -63,14 +55,10 @@ class App extends React.Component {
           value={this.state.filter}
         />
 
-        {!this.state.filter ? (
-          <ContactList
-            contacts={this.state.contacts}
-            onClick={this.onDeleteBtnClickHandler}
-          />
-        ) : (
-          <ContactList contacts={this.filteredContacts(this.state.contacts)} />
-        )}
+        <ContactList
+          contacts={filteredContacts}
+          onClick={this.onDeleteBtnClickHandler}
+        />
       </div>
     );
   }

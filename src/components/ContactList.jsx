@@ -1,20 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import ContactItem from './ContactItem';
 
 export function ContactList({ contacts, onClick }) {
   return (
     <StyledUl>
-      {contacts.map(({ id, name, number }) => (
-        <li key={id}>
-          <span>{name}: </span>
-          <span>{number}</span>
-          {onClick && (
-            <button id={id} type="button" onClick={onClick}>
-              Delete
-            </button>
-          )}
-        </li>
+      {contacts.map(contact => (
+        <ContactItem key={contact.id} contact={contact} delMethod={onClick} />
       ))}
     </StyledUl>
   );
