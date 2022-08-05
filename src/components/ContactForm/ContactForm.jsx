@@ -1,9 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledForm, StyledButton } from './ContactForm.styled';
 import PropTypes from 'prop-types';
-import styles from '../index.module.css';
+import styles from '../../index.module.css';
 
 export class ContactForm extends React.Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    contactsRef: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  };
+
   state = {
     name: '',
     number: '',
@@ -61,35 +72,3 @@ export class ContactForm extends React.Component {
     );
   }
 }
-
-const StyledForm = styled.form`
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  box-shadow: 0px 1px 8px 1px black;
-  background-image: linear-gradient(#ffffff42, #ffffff26);
-  padding: 2rem;
-  display: flex;
-  max-width: 450px;
-  box-sizing: border-box;
-  flex-direction: column;
-  text-align: left;
-  margin: 0 auto;
-  &:focus-within {
-    box-shadow: 0px 0px 1px 1px black;
-  }
-`;
-
-const StyledButton = styled.button`
-  padding: 10px 20px;
-  width: fit-content;
-  margin: 1rem auto 0;
-  font-size: 1rem;
-  border: none;
-  background-color: #759091;
-  color: white;
-`;
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  contactsRef: PropTypes.array.isRequired,
-};

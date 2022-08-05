@@ -1,3 +1,3 @@
-export { ContactForm } from './ContactForm';
-export { ContactList } from './ContactList.jsx';
-export { Filter } from './Filter';
+export { ContactForm } from './ContactForm/ContactForm';
+export { ContactList } from './ContactList/ContactList';
+export { Filter } from './Filter/Filter';

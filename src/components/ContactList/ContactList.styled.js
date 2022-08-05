@@ -1,19 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import ContactItem from './ContactItem';
 
-export function ContactList({ contacts, onClick }) {
-  return (
-    <StyledUl>
-      {contacts.map(contact => (
-        <ContactItem key={contact.id} contact={contact} delMethod={onClick} />
-      ))}
-    </StyledUl>
-  );
-}
-
-const StyledUl = styled.ul`
+export const StyledUl = styled.ul`
   list-style: none;
   margin: 0 auto;
   max-width: fit-content;
@@ -39,8 +26,3 @@ const StyledUl = styled.ul`
     }
   }
 `;
-
-ContactList.propTypes = {
-  contacts: PropTypes.array.isRequired,
-  onClick: PropTypes.func,
-};
